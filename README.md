@@ -5,7 +5,8 @@
 <img src="https://img.shields.io/pypi/v/djangito.svg" /></a>
 <a href="https://travis-ci.org/jamneck/djangito"><img src="https://travis-ci.org/jamneck/djangito.svg?branch=master" /></a>
 </p>
-Use AWS Application load balancer authentication with Cognito and Django
+
+Use AWS Application load balancer authentication with Cognito Hosted UI and Django
 
 ## Features
 -   TODO
@@ -16,9 +17,9 @@ pip install djangito
 ```
 
 ## AWS Requirements
-1. Application load balancer with a listener for 443
-2. An authentication rule for the login path (/alb/login*)
-3. For more info see https://docs.aws.amazon.com/elasticloadbalancing/latest/application/listener-authenticate-users.html
+1. Please read https://docs.aws.amazon.com/elasticloadbalancing/latest/application/listener-authenticate-users.html
+2. Application load balancer with a listener for 443
+3. An authentication rule for the login path (/alb/login*)
 
 ### Quick start
 1. Add "djangito" to your INSTALLED_APPS setting like this::
@@ -31,7 +32,7 @@ INSTALLED_APPS = [
 
 2. Include the polls URLconf in your project urls.py like this::
 ```
-    path('alb/', include('polls.urls')),
+    path('alb/', include('djangito.urls')),
 ```
 
 Edit your settings.py file and add AutomaticUserLoginMiddleware to the MIDDLEWARE_CLASSES list, below the AuthenticationMiddleware:

@@ -16,7 +16,10 @@ setup(
         "Programming Language :: Python :: 3",
     ],
     description="Use AWS Application load balancer authentication with Cognito and Django",
-    install_requires=[],
+    install_requires=[
+        'Django>=2.2.10,<2.3',
+        'requests',
+    ],
     license="Apache Software License 2.0",
     long_description=readme,
     long_description_content_type="text/markdown",
