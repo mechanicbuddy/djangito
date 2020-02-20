@@ -10,6 +10,48 @@ Use AWS Application load balancer authentication with Cognito and Django
 ## Features
 -   TODO
 
+## Installation
+```
+pip install djangito
+```
+
+## AWS Requirements
+1. Application load balancer with a listener for 443
+2. An authentication rule for the login path (/alb/login*)
+3. For more info see https://docs.aws.amazon.com/elasticloadbalancing/latest/application/listener-authenticate-users.html
+
+### Quick start
+1. Add "djangito" to your INSTALLED_APPS setting like this::
+
+  INSTALLED_APPS = [
+      ...
+      'djangito',
+  ]
+
+2. Include the polls URLconf in your project urls.py like this::
+
+  path('alb/', include('polls.urls')),
+
+Edit your settings.py file and add AutomaticUserLoginMiddleware to the MIDDLEWARE_CLASSES list, below the AuthenticationMiddleware:
+
+```
+MIDDLEWARE = [
+  # 'django.contrib.auth.middleware.AuthenticationMiddleware',
+  'authentication.middleware.AutomaticUserLoginMiddleware',
+  # ...
+]
+```
+
+```
+COGNITO_HOST = 'https://hosted.example.com'
+COGNITO_CLIENT_ID = 'your_client_id'
+COGNITO_REDIRECT_URI = 'https://www.example.com/login'
+COGNITO_SCOPE = 'openid aws.cognito.signin.user.admin'
+COGNITO_COOKIE = 'AWSELBAuthSessionCookie'
+```
+
+
+
 # Credits
 This package was created with Cookiecutter and the `cs01/cookiecutter-pypackage` project template.
 
