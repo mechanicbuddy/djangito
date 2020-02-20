@@ -10,7 +10,7 @@ Use AWS Application load balancer authentication with Cognito and Django
 ## Features
 -   TODO
 
-## Installation
+## Installation (not ready)
 ```
 pip install djangito
 ```
@@ -22,18 +22,19 @@ pip install djangito
 
 ### Quick start
 1. Add "djangito" to your INSTALLED_APPS setting like this::
-
-  INSTALLED_APPS = [
-      ...
-      'djangito',
-  ]
+```
+INSTALLED_APPS = [
+    ...
+    'djangito',
+]
+```
 
 2. Include the polls URLconf in your project urls.py like this::
-
-  path('alb/', include('polls.urls')),
+```
+    path('alb/', include('polls.urls')),
+```
 
 Edit your settings.py file and add AutomaticUserLoginMiddleware to the MIDDLEWARE_CLASSES list, below the AuthenticationMiddleware:
-
 ```
 MIDDLEWARE = [
   # 'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -42,6 +43,7 @@ MIDDLEWARE = [
 ]
 ```
 
+Add the following settings to the settings.py file:
 ```
 COGNITO_HOST = 'https://hosted.example.com'
 COGNITO_CLIENT_ID = 'your_client_id'
